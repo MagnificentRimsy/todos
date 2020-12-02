@@ -10,6 +10,7 @@ use App\Traits\Authorize;
 use App\Utils\App;
 use Illuminate\Http\Response;
 use Illuminate\Pipeline\Pipeline;
+use Illuminate\Auth\Access\AuthorizationException;
 
 
 abstract class BaseController extends Controller
@@ -42,11 +43,32 @@ abstract class BaseController extends Controller
 
         $resource = $this->repo->find($id);
 
+         if($resource[1] == Response::HTTP_OK){
+            try {
+                $this->authorize($resource[0]);
+            }catch(AuthorizationException $e) {
+                return response()->json(['message' => 'access denied'], Response::HTTP_FORBIDDEN);
+            }
+            
+        }
+
         return response()->json($resource[0], $resource[1]);
     }
 
 
     public function destroy($id) {
+
+        $resource = $this->repo->find($id);
+
+        if($resource[1] == Response::HTTP_OK){
+            try {
+                $this->authorize($resource[0]);
+            }catch(AuthorizationException $e) {
+                return response()->json(['message' => 'access denied'], Response::HTTP_FORBIDDEN);
+            }
+            
+        }
+
 
         $resource = $this->repo->destroy($id);
 
@@ -56,7 +78,19 @@ abstract class BaseController extends Controller
     public function update($id, Request $request) {
         $data = $request->validate($this->repo->model()::updateRules($id));
 
+        $resource = $this->repo->find($id);
+
+        if($resource[1] == Response::HTTP_OK){
+            try {
+                $this->authorize($resource[0]);
+            }catch(AuthorizationException $e) {
+                return response()->json(['message' => 'access denied'], Response::HTTP_FORBIDDEN);
+            }
+            
+        }
+
         $resource = $this->repo->update($id, $data);
+
 
         return response()->json($resource[0], $resource[1]);
 
