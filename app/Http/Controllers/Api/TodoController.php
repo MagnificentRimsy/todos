@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Facades\TodoFacade;
-use App\Filters\{AuthData, Paginate};
+use App\Filters\{AuthData, Paginate, OrderByDate};
 
 class TodoController extends BaseController
 {
@@ -30,7 +30,6 @@ class TodoController extends BaseController
 	*/
     public function filters() {
     	return [
-    		AuthData::class,
     		Paginate::class
     	];
     }

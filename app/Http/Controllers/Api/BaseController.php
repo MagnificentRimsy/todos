@@ -23,15 +23,15 @@ abstract class BaseController extends Controller
     }
 
     public function index() {
-        return app(Pipeline::class)
+        return response()->json(app(Pipeline::class)
             ->send($this->repo->all())
             ->through($this->filters())
-            ->thenReturn();
+            ->thenReturn());
     }
 
     public function store(Request $request) {
         $data = $request->validate($this->repo->model()::storeRules());
-        $data['user_id'] = 1;
+        $data['user_id'] = auth()->user()->id;
 
         $resource = $this->repo->store($data);
 

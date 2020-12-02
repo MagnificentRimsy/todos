@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -64,5 +64,27 @@ class User extends Authenticatable
         return $this->hasMany(Task::class);
     }
 
-  
+    
+    /**
+    *
+    * Get the created at attribute
+    *
+    * @param $val
+    * @return string
+    */
+    public function getCreatedAtAttribute($val) {
+        return $val ?  \Carbon\Carbon::parse($val)->format('Y-m-d H:i:s'): null;
+    }
+
+
+    /**
+    *
+    * Get the updated at attribute
+    *
+    * @param $val
+    * @return string
+    */
+    public function getUpdatedAtAttribute($val) {
+        return $val ?  \Carbon\Carbon::parse($val)->format('Y-m-d H:i:s') : null;
+    }
 }

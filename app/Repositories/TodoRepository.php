@@ -10,4 +10,18 @@ class TodoRepository extends BaseRepository {
     {
         parent::__construct(TodoFacade::class);
     }
+
+     /**
+     * Get resources
+     *
+     * @return mixed
+     */
+    public function all()
+    {
+        return $this->facade::all()->myTasks()
+        	->orderBy('created_at', 'desc');
+    }
+
 }
+
+

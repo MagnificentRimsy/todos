@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use App\Services\TodoService;
+use App\Services\{TodoService, UserService};
 use App\Repositories\TodoRepository;
 use App\Contracts\CrudInterface;
 use App\Http\Controllers\Api\TodoController;
@@ -37,6 +37,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton('TodoFacade', function() {
             return new TodoService();
+        });
+
+        $this->app->singleton('UserFacade', function() {
+            return new UserService();
         });
     }
 }
