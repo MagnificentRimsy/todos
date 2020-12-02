@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Facades\TodoFacade;
 use Illuminate\Http\Response;
-use App\Filters\{AuthData, Paginate, OrderByDate};
+use App\Filters\{AuthData, Paginate, OrderByDate, TodoStatus};
 use Illuminate\Auth\Access\AuthorizationException;
 
 class TodoController extends BaseController
@@ -45,6 +45,7 @@ class TodoController extends BaseController
 	*/
     public function filters() {
     	return [
+    		TodoStatus::class,
     		Paginate::class
     	];
     }
