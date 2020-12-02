@@ -26,7 +26,7 @@ class Todo extends Model
     *
     * @var array
     */
-    protected $hidden = ['user_id'];
+    protected $hidden = [];
 
     public function user()
     {

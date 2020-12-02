@@ -22,13 +22,14 @@ class TodoController extends BaseController
 		$resource = $this->repo->find($id);
 
 		if($resource[1] == Response::HTTP_OK){
-            try {
-                $this->authorize($resource[0]);
-            }catch(AuthorizationException $e) {
-                return response()->json(['message' => 'access denied'], Response::HTTP_FORBIDDEN);
+
+
+            if($resource[0]->user_id != auth()->user()->id) {
+            	return response()->json(['access denied'], Response::HTTP_FORBIDDEN);
             }
 
             return response()->json(TodoFacade::markAsComplete($id));
+
             
         }
 

@@ -29,5 +29,5 @@ Route::group(['middleware' => ['auth:api']], function() {
 	Route::get('/todos/{id}', [TodoController::class, 'show']);
 	Route::put('/todos/{id}', [TodoController::class, 'update']);
 	Route::delete('/todos/{id}', [TodoController::class, 'destroy']);
-	Route::put('todos/complete/{id}', [TodoController::class, 'markAsComplete']);
+	Route::put('todos/{id}/complete', [TodoController::class, 'markAsComplete']);
 });
