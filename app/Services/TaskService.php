@@ -3,7 +3,7 @@
 namespace App\Services;
 
 
-public class TodoService extends BaseService {
+public class TaskService extends BaseService {
 
 
     /**

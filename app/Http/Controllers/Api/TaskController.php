@@ -5,7 +5,16 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TaskController extends Controller
+class TaskController extends BaseController
 {
-    //
+    
+
+	/**
+	*
+	* Filter resources
+	*
+	*/
+    public function filters() {
+    	return [];
+    }
 }
