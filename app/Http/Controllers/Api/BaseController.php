@@ -23,35 +23,42 @@ abstract class BaseController extends Controller
     }
 
     public function index() {
-        return App::paginate(app(Pipeline::class)
+        return app(Pipeline::class)
             ->send($this->repo->all())
             ->through($this->filters())
-            ->thenReturn());
+            ->thenReturn();
     }
 
     public function store(Request $request) {
         $data = $request->validate($this->repo->model()::storeRules());
+        $data['user_id'] = 1;
 
-        return App::response($this->repo->store($data));
+        $resource = $this->repo->store($data);
+
+        return response()->json($resource[0], $resource[1]);
     }
 
     public function show($id) {
 
         $resource = $this->repo->find($id);
 
-        return App::response($resource);
+        return response()->json($resource[0], $resource[1]);
     }
 
 
     public function destroy($id) {
 
-        return App::response($this->repo->destroy($id));
+        $resource = $this->repo->destroy($id);
+
+         return response()->json($resource[0], $resource[1]);
     }
 
     public function update($id, Request $request) {
         $data = $request->validate($this->repo->model()::updateRules($id));
 
-        return App::response($this->repo->update($id, $data));
+        $resource = $this->repo->update($id, $data);
+
+        return response()->json($resource[0], $resource[1]);
 
     }
 

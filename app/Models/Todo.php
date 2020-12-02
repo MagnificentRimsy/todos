@@ -11,10 +11,38 @@ class Todo extends Model
 
     protected  $table = 'tasks';
 
-    protected $fillable = [];
+    // protected $fillable = [];
+
+    protected $guarded = ['id'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+    *
+    * @return array
+    *
+    */
+    public static function storeRules() {
+    	return [
+    		'name' => ['required', 'string'],
+    		'description' => ['required', 'string'],
+
+    	];
+    }
+
+
+    /**
+    *
+    * @return array
+    *
+    */
+    public static function updateRules($id) {
+    	return [
+    		'name' => ['required', 'string'],
+    		'description' => ['required', 'string'],
+    	];
     }
 }

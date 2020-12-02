@@ -2,12 +2,12 @@
 
 namespace App\Repositories;
 
-use App\Facades\TaskFacade;
+use App\Facades\TodoFacade;
 
 class TodoRepository extends BaseRepository {
 
     public function __construct()
     {
-        parent::__construct(TaskFacade::class);
+        parent::__construct(TodoFacade::class);
     }
 }

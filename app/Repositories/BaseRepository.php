@@ -2,11 +2,11 @@
 
 namespace App\Repositories;
 
-use App\Contracts\RepoInterface;
+use App\Contracts\CrudInterface;
 use Exception;
 use Illuminate\Http\Response;
 
-class BaseRepository implements RepoInterface {
+class BaseRepository implements CrudInterface {
 
     protected $facade;
 

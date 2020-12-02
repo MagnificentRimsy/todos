@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Services\TodoService;
 use App\Repositories\TodoRepository;
+use App\Contracts\CrudInterface;
 use App\Http\Controllers\Api\TodoController;
 
 class AppServiceProvider extends ServiceProvider
