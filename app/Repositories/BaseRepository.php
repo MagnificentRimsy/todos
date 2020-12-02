@@ -6,7 +6,7 @@ use App\Contracts\RepoInterface;
 use Exception;
 use Illuminate\Http\Response;
 
-class BaseRepo implements RepoInterface {
+class BaseRepository implements RepoInterface {
 
     protected $facade;
 
