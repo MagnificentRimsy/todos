@@ -2,10 +2,10 @@
 
 namespace App\Facades;
 
-class TaskFacade {
+class TodoFacade {
 
     public static function __callStatic($method, $arguments)
     {
-        return app()['TaskFacade']->$method(...$arguments);
+        return app()['TodoFacade']->$method(...$arguments);
     }
 }

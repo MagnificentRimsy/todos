@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Contracts\RepoInterface;
+use App\Contracts\CrudInterface;
 use App\Traits\Authorize;
 use App\Utils\App;
 use Illuminate\Http\Response;
@@ -17,7 +17,7 @@ abstract class BaseController extends Controller
   
     protected $repo;
 
-    public function __construct(RepoInterface $repo)
+    public function __construct(CrudInterface $repo)
     {
         if(!$this->repo) $this->repo = $repo;
     }

@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Facades\TaskFacade;
 
-class TaskRepository extends BaseRepository {
+class TodoRepository extends BaseRepository {
 
     public function __construct()
     {

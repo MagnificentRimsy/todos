@@ -4,9 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use App\Services\TaskService;
-use App\Repositories\TaskRepository;
-use App\Http\Controllers\Api\TaskController;
+use App\Services\TodoService;
+use App\Repositories\TodoRepository;
+use App\Http\Controllers\Api\TodoController;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,10 +17,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->when(TaskController::class)
+        $this->app->when(TodoController::class)
             ->needs(CrudInterface::class)
             ->give(function() {
-                return new TaskRepository();
+                return new TodoRepository();
             });
     }
 
@@ -34,8 +34,8 @@ class AppServiceProvider extends ServiceProvider
         //
         Schema::defaultstringLength(191);
 
-        $this->app->singleton('TaskFacade', function() {
-            return new TaskService();
+        $this->app->singleton('TodoFacade', function() {
+            return new TodoService();
         });
     }
 }
